@@ -35,6 +35,6 @@ public class ListPageLoanServiceImpl implements ListPageLoanService {
         }
         int start = (int) pageable.getOffset();
         int end = (start + pageable.getPageSize()) > loans.size() ? loans.size() : (start + pageable.getPageSize());
-        return new PageImpl(loans.subList(start,end), pageable, loans.size());
+        return new PageImpl(loans.subList(start, end), pageable, loans.size());
     }
 }

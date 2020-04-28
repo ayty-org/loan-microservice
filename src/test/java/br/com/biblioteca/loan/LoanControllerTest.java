@@ -1,6 +1,5 @@
 package br.com.biblioteca.loan;
 
-import br.com.biblioteca.loan.loan.Loan;
 import br.com.biblioteca.loan.loan.LoanReturnDTO;
 import br.com.biblioteca.loan.loan.services.DeleteLoanService;
 import br.com.biblioteca.loan.loan.services.GetLoanService;
@@ -29,7 +28,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Collections;
 
-import static br.com.biblioteca.loan.builders.LoanBuilder.createLoan;
 import static br.com.biblioteca.loan.builders.LoanReturnBuilder.createLoanReturn;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
@@ -70,8 +68,8 @@ public class LoanControllerTest {
 
         when(getLoanService.find(anyLong())).thenReturn(createLoanReturn().id(1L).build());
 
-        mockMvc.perform(get("/v1/api/loan/{id}",1L)
-                .accept(MediaType.APPLICATION_JSON ))
+        mockMvc.perform(get("/v1/api/loan/{id}", 1L)
+                .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", is(1)))
@@ -99,7 +97,7 @@ public class LoanControllerTest {
         ));
 
         mockMvc.perform(get("/v1/api/loan")
-                .accept(MediaType.APPLICATION_JSON ))
+                .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[*]", hasSize(2)))
@@ -135,11 +133,11 @@ public class LoanControllerTest {
     void whenValidListPageLoan_thenReturnsLoanPage() throws Exception { //pesquisa todos os Loans com paginanação
 
         Page<LoanReturnDTO> loanPage = new PageImpl<>(Collections.singletonList(createLoanReturn().id(1L).build()));
-        Pageable pageable = PageRequest.of(0,2);
+        Pageable pageable = PageRequest.of(0, 2);
         when(listPageLoanService.findPage(pageable)).thenReturn(loanPage);
 
         mockMvc.perform(get("/v1/api/loan/page/?page=0&size=2")
-                .accept(MediaType.APPLICATION_JSON ))
+                .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.content[0].id", is(1)))
@@ -174,7 +172,7 @@ public class LoanControllerTest {
 
     @Test
     @DisplayName("Deleta livro")
-    void whenValidDeleteLoan_thenReturns204() throws Exception{ // deleta emprestimo
+    void whenValidDeleteLoan_thenReturns204() throws Exception { // deleta emprestimo
         mockMvc.perform(delete("/v1/api/loan/{id}", 1L)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNoContent());

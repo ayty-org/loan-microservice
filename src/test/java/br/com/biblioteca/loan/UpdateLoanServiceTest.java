@@ -57,9 +57,6 @@ public class UpdateLoanServiceTest {
                 () -> assertThat(result.getBook(), is("001")),
                 () -> assertThat(result.getLoanTime(), is("teste update"))
         );
-
-
     }
-
 }
 

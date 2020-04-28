@@ -1,7 +1,5 @@
 package br.com.biblioteca.loan.loan.v1;
 
-import br.com.biblioteca.loan.loan.Loan;
-import br.com.biblioteca.loan.loan.LoanDTO;
 import br.com.biblioteca.loan.loan.LoanReturnDTO;
 import br.com.biblioteca.loan.loan.LoanSaveDTO;
 import br.com.biblioteca.loan.loan.LoanUpdateDTO;
@@ -22,7 +20,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 

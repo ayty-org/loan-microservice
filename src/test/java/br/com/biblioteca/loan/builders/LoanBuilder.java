@@ -4,7 +4,7 @@ import br.com.biblioteca.loan.loan.Loan;
 
 public class LoanBuilder {
 
-    public static Loan.Builder createLoan(){
+    public static Loan.Builder createLoan() {
         return Loan
                 .builder()
                 .userApp("001")

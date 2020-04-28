@@ -3,9 +3,7 @@ package br.com.biblioteca.loan;
 import br.com.biblioteca.loan.exceptions.LoanNotDeletedException;
 import br.com.biblioteca.loan.feign.UpdateBook;
 import br.com.biblioteca.loan.feign.UpdateUserApp;
-import br.com.biblioteca.loan.loan.LoanBookSpecificIdDTO;
 import br.com.biblioteca.loan.loan.LoanRepository;
-import br.com.biblioteca.loan.loan.LoanUserAppSpecificIdDTO;
 import br.com.biblioteca.loan.loan.services.DeleteLoanServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -20,7 +18,6 @@ import java.util.Optional;
 import static br.com.biblioteca.loan.builders.LoanBuilder.createLoan;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -41,7 +38,7 @@ public class DeleteLoanServiceTest {
 
     @BeforeEach
     public void setUp() {
-        this.deleteLoan = new DeleteLoanServiceImpl(loanRepository,updateUserApp,updateBook);
+        this.deleteLoan = new DeleteLoanServiceImpl(loanRepository, updateUserApp, updateBook);
     }
 
     @Test

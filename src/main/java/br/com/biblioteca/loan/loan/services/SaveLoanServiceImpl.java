@@ -24,8 +24,8 @@ public class SaveLoanServiceImpl implements SaveLoanService {
     private final GetUserApp getUserApp;
     private final UpdateUserApp updateUserApp;
     private final UpdateBook updateBook;
-    private LoanUserAppSpecificIdDTO loanUserAppSpecificIdDTO = new LoanUserAppSpecificIdDTO();
-    private LoanBookSpecificIdDTO loanBookSpecificIdDTO = new LoanBookSpecificIdDTO();
+    private LoanUserAppSpecificIdDTO loanUserAppSpecificIdDTO;
+    private LoanBookSpecificIdDTO loanBookSpecificIdDTO;
 
     @Override
     public void insert(LoanSaveDTO loan) {
@@ -45,7 +45,7 @@ public class SaveLoanServiceImpl implements SaveLoanService {
 
         String idSpecific = "";
         for (BookSaveDTO book : loan.getBooks()) {
-            idSpecific+=book.getSpecificID();
+            idSpecific += book.getSpecificID();
         }
 
         Loan loanApp = Loan.to(loan, idSpecific);
@@ -53,6 +53,8 @@ public class SaveLoanServiceImpl implements SaveLoanService {
         loanApp.setLoanSpecificID(gerarSpecificId(loanApp.getId()));
         loanRepository.save(loanApp);
 
+        loanUserAppSpecificIdDTO = new LoanUserAppSpecificIdDTO();
+        loanBookSpecificIdDTO = new LoanBookSpecificIdDTO();
         loanUserAppSpecificIdDTO.setLoanSpecificID(loanApp.getLoanSpecificID());
         loanBookSpecificIdDTO.setLoanSpecificID(loanApp.getLoanSpecificID());
         updateUserApp.updateUserApp(loanApp.getUserApp(), loanUserAppSpecificIdDTO);

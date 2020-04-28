@@ -10,8 +10,8 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableFeignClients
 public class LoanApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(LoanApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(LoanApplication.class, args);
+    }
 
 }
