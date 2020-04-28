@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
-@FeignClient(contextId = "GetBook", url = "http://localhost:9092/v2/api/book", name = "book-user")
+@FeignClient(contextId = "GetBook", url = "http://localhost:9092/v1/api/book", name = "book-user")
 public interface GetBook {
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "/getBookSpecificId/{id}")
     BookDTO bookId(@PathVariable String id);
 
-    @GetMapping(value = "/loanSpecific/{id}")
+    @GetMapping(value = "/getAllLoanSpecificId/{id}")
     List<BookDTO> bookAllId(@PathVariable String id);
 }
