@@ -30,8 +30,15 @@ public class DeleteLoanServiceImpl implements DeleteLoanService {
         if (loanApp.isPresent()) {
             Loan loan = loanApp.get();
             updateUserApp.updateUserApp(loan.getUserApp(), new LoanUserAppSpecificIdDTO(null));
-            updateBook.updateBook(loan.getBook(), new LoanBookSpecificIdDTO(null));
+            for (String i: ids(loan.getBook())){
+                updateBook.updateBook(i, new LoanBookSpecificIdDTO(null));
+            }
+
         }
         loanRepository.deleteById(id);
+    }
+
+    private static String[] ids(String ids){
+        return ids.split(",");
     }
 }

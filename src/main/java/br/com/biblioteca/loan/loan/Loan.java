@@ -33,17 +33,6 @@ public class Loan implements Serializable {
 
     private String loanSpecificID;
 
-    public static Loan to(LoanDTO loanDTO) {
-        return Loan
-                .builder()
-                .id(loanDTO.getId())
-                .userApp(loanDTO.getUserApp())
-                .book(loanDTO.getBook())
-                .loanTime(loanDTO.getLoanTime())
-                .loanSpecificID(loanDTO.getLoanSpecificID())
-                .build();
-    }
-
     public static Loan to(LoanSaveDTO saveDTO, String bookId) {
         return Loan
                 .builder()

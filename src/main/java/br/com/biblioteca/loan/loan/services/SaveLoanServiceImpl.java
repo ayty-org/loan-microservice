@@ -46,6 +46,7 @@ public class SaveLoanServiceImpl implements SaveLoanService {
         String idSpecific = "";
         for (BookSaveDTO book : loan.getBooks()) {
             idSpecific += book.getSpecificID();
+            idSpecific += ",";
         }
 
         Loan loanApp = Loan.to(loan, idSpecific);
