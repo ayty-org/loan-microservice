@@ -1,7 +1,7 @@
 package br.com.biblioteca.loan.loan.services;
 
-import br.com.biblioteca.loan.exceptions.BookNotFoundException;
-import br.com.biblioteca.loan.exceptions.UserAppNotFoundException;
+import br.com.biblioteca.loan.exceptions.FeignBookException;
+import br.com.biblioteca.loan.exceptions.FeignUserAppException;
 import br.com.biblioteca.loan.feign.GetBook;
 import br.com.biblioteca.loan.feign.GetUserApp;
 import br.com.biblioteca.loan.feign.UpdateBook;
@@ -31,16 +31,16 @@ public class SaveLoanServiceImpl implements SaveLoanService {
     public void insert(LoanSaveDTO loan) {
         try {
             getUserApp.userId(loan.getUserApp());
-        } catch (Exception e) {
-            throw new UserAppNotFoundException();
+        }catch (feign.FeignException.NotFound request){
+            throw new FeignUserAppException(request.getMessage());
         }
 
         try {
             for (BookSaveDTO book : loan.getBooks()) {
                 getBook.bookId(book.getSpecificID());
             }
-        } catch (Exception e) {
-            throw new BookNotFoundException();
+        } catch (feign.FeignException.NotFound request) {
+            throw new FeignBookException(request.getMessage());
         }
 
         String idSpecific = "";
