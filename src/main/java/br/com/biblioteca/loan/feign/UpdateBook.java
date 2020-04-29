@@ -10,4 +10,7 @@ public interface UpdateBook {
 
     @PutMapping(value = "/updateLoanSpecificId/{id}")
     void updateBook(@PathVariable String id, LoanBookSpecificIdDTO loanBookSpecificIdDTO);
+
+    @PutMapping(value = "/updateStatusBook/{id}")
+    void updateStatusBook(@PathVariable String id, boolean status);
 }

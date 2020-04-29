@@ -62,6 +62,7 @@ public class SaveLoanServiceImpl implements SaveLoanService {
 
         for (BookSaveDTO book : loan.getBooks()) {
             updateBook.updateBook(book.getSpecificID(), loanBookSpecificIdDTO);
+            updateBook.updateStatusBook(book.getSpecificID(),true);
         }
     }
 
