@@ -34,7 +34,6 @@ public class ListLoanServiceTest {
     @Mock
     private LoanRepository loanRepository;
 
-    @Mock
     private ListLoanServiceImpl findAllLoan;
 
     @Mock

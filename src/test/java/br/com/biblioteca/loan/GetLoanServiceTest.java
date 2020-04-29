@@ -37,12 +37,9 @@ public class GetLoanServiceTest {
     @Mock
     private LoanRepository loanRepository;
 
-    @Mock
     private GetLoanServiceImpl findLoan;
-
     @Mock
     private GetBook getBook;
-
     @Mock
     private GetUserApp getUserApp;
 

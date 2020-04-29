@@ -29,7 +29,7 @@ public class UpdateLoanServiceTest {
 
     @Mock
     private LoanRepository loanRepository;
-    @Mock
+
     private UpdateLoanServiceImpl updateLoan;
 
     @BeforeEach

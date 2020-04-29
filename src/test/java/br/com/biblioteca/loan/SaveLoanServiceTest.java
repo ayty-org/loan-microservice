@@ -30,7 +30,7 @@ public class SaveLoanServiceTest {
 
     @Mock
     private LoanRepository loanRepository;
-    @Mock
+
     private SaveLoanServiceImpl saveLoan;
     @Mock
     private GetBook getBook;
@@ -63,7 +63,7 @@ public class SaveLoanServiceTest {
         //verificação
         assertAll("Loan",
                 () -> assertThat(result.getUserApp(), is("001")),
-                () -> assertThat(result.getBook(), is("001001")),
+                () -> assertThat(result.getBook(), is("001,001,")),
                 () -> assertThat(result.getLoanTime(), is("50 dias"))
         );
     }

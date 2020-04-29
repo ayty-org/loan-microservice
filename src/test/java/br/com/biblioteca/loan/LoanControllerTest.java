@@ -29,9 +29,12 @@ import java.nio.file.Paths;
 import java.util.Collections;
 
 import static br.com.biblioteca.loan.builders.LoanReturnBuilder.createLoanReturn;
+import static br.com.biblioteca.loan.builders.LoanSaveBuilder.createLoanSave;
+import static br.com.biblioteca.loan.builders.LoanUpdate.createLoanUpdate;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -64,7 +67,7 @@ public class LoanControllerTest {
 
     @Test
     @DisplayName("Pesquisa emprestimos por id")
-    void whenValidGetIdLoan_thenReturnsLoan() throws Exception { //pesquisa por Loan
+    void whenValidGetIdLoan_thenReturnsLoan() throws Exception {
 
         when(getLoanService.find(anyLong())).thenReturn(createLoanReturn().id(1L).build());
 
@@ -86,11 +89,13 @@ public class LoanControllerTest {
                 .andExpect(jsonPath("$.books[0].specificID", is("001")))
                 .andExpect(jsonPath("$.books[0].loanSpecificID", is("001")))
                 .andExpect(jsonPath("$.loanTime", is("50 dias")));
+
+        verify(getLoanService).find(anyLong());
     }
 
     @Test
     @DisplayName("Pesquisa lista de emprestimo")
-    void whenValidListLoan_thenReturnsLoan() throws Exception { //pesquisa todos os Loans
+    void whenValidListLoan_thenReturnsLoan() throws Exception {
 
         when(listLoanService.findAll()).thenReturn(Lists.newArrayList(
                 createLoanReturn().id(1L).loanTime("10 dias").build(), createLoanReturn().id(2L).loanTime("20 dias").build()
@@ -126,6 +131,8 @@ public class LoanControllerTest {
                 .andExpect(jsonPath("$[1].books[0].specificID", is("001")))
                 .andExpect(jsonPath("$[1].books[0].loanSpecificID", is("001")))
                 .andExpect(jsonPath("$[1].loanTime", is("20 dias")));
+
+        verify(listLoanService).findAll();
     }
 
     @Test
@@ -148,6 +155,8 @@ public class LoanControllerTest {
                 .andExpect(jsonPath("$.content[0].books[0].resume", is("teste resume")))
                 .andExpect(jsonPath("$.content[0].books[0].isbn", is("teste isbn")))
                 .andExpect(jsonPath("$.content[0].books[0].author", is("teste author")));
+
+        verify(listPageLoanService).findPage(pageable);
     }
 
     @Test
@@ -158,6 +167,8 @@ public class LoanControllerTest {
                 .content(readJson("loanDTO.json")))
                 .andDo(print())
                 .andExpect(status().isCreated());
+
+        //verify(saveLoanService).insert(createLoanSave().build());
     }
 
     @Test
@@ -168,6 +179,8 @@ public class LoanControllerTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isNoContent());
+
+        //verify(updateLoanService).update(createLoanUpdate().build(),1L);
     }
 
     @Test
@@ -176,6 +189,8 @@ public class LoanControllerTest {
         mockMvc.perform(delete("/v1/api/loan/{id}", 1L)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNoContent());
+
+        verify(deleteLoanService).delete(anyLong());
     }
 
     public static String readJson(String file) throws Exception {

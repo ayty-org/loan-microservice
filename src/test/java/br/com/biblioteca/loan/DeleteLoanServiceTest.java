@@ -29,7 +29,7 @@ public class DeleteLoanServiceTest {
 
     @Mock
     private LoanRepository loanRepository;
-    @Mock
+
     private DeleteLoanServiceImpl deleteLoan;
     @Mock
     private UpdateUserApp updateUserApp;
@@ -45,17 +45,6 @@ public class DeleteLoanServiceTest {
     @DisplayName("Deve deletar um emprestimo")
     void shouldLoanDeleted() {
         when(loanRepository.existsById(1L)).thenReturn(true);
-        deleteLoan.delete(1L);
-        verify(loanRepository).existsById(1L);
-    }
-
-    @Test
-    @DisplayName("Deve deletar um emprestimo e atualizar o campo de loanSpecificID em book e user")
-    void shouldLoanDeletedUpdateLoanSpecificIdMicroservices() {
-        when(loanRepository.existsById(1L)).thenReturn(true);
-        when(loanRepository.findById(1L)).thenReturn(Optional.of(createLoan().id(1L).build()));
-        //updateBook.updateBook("001", new LoanBookSpecificIdDTO(null));
-        //updateUserApp.updateUserApp("001", new LoanUserAppSpecificIdDTO(null));
         deleteLoan.delete(1L);
         verify(loanRepository).existsById(1L);
     }
