@@ -18,6 +18,8 @@ import java.util.Optional;
 import static br.com.biblioteca.loan.builders.LoanBuilder.createLoan;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -44,8 +46,12 @@ public class DeleteLoanServiceTest {
     @Test
     @DisplayName("Deve deletar um emprestimo")
     void shouldLoanDeleted() {
-        when(loanRepository.existsById(1L)).thenReturn(true);
+        when(loanRepository.existsById(anyLong())).thenReturn(true);
+        when(loanRepository.findById(anyLong())).thenReturn(Optional.of(createLoan().build()));
         deleteLoan.delete(1L);
+        verify(updateUserApp).updateUserApp(anyString(), eq("null"));
+        verify(updateBook).updateBook(anyString(), eq("null"));
+        verify(updateBook).updateStatusBook(anyString(), eq(false));
         verify(loanRepository).existsById(1L);
     }
 
