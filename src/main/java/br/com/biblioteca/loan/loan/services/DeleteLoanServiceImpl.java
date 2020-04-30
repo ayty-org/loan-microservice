@@ -4,9 +4,7 @@ import br.com.biblioteca.loan.exceptions.LoanNotDeletedException;
 import br.com.biblioteca.loan.feign.UpdateBook;
 import br.com.biblioteca.loan.feign.UpdateUserApp;
 import br.com.biblioteca.loan.loan.Loan;
-import br.com.biblioteca.loan.loan.LoanBookSpecificIdDTO;
 import br.com.biblioteca.loan.loan.LoanRepository;
-import br.com.biblioteca.loan.loan.LoanUserAppSpecificIdDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -29,9 +27,9 @@ public class DeleteLoanServiceImpl implements DeleteLoanService {
         Optional<Loan> loanApp = loanRepository.findById(id);
         if (loanApp.isPresent()) {
             Loan loan = loanApp.get();
-            updateUserApp.updateUserApp(loan.getUserApp(), new LoanUserAppSpecificIdDTO(null));
+            updateUserApp.updateUserApp(loan.getUserApp(),null);
             for (String i: ids(loan.getBook())){
-                updateBook.updateBook(i, new LoanBookSpecificIdDTO(null));
+                updateBook.updateBook(i, null);
                 updateBook.updateStatusBook(i,false);
             }
 

@@ -1,6 +1,5 @@
 package br.com.biblioteca.loan.feign;
 
-import br.com.biblioteca.loan.loan.LoanBookSpecificIdDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -9,7 +8,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 public interface UpdateBook {
 
     @PutMapping(value = "/updateLoanSpecificId/{id}")
-    void updateBook(@PathVariable String id, LoanBookSpecificIdDTO loanBookSpecificIdDTO);
+    void updateBook(@PathVariable String id, String loanBookSpecificIdDTO);
 
     @PutMapping(value = "/updateStatusBook/{id}")
     void updateStatusBook(@PathVariable String id, boolean status);

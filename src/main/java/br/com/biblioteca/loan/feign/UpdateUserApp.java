@@ -1,6 +1,5 @@
 package br.com.biblioteca.loan.feign;
 
-import br.com.biblioteca.loan.loan.LoanUserAppSpecificIdDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -9,5 +8,5 @@ import org.springframework.web.bind.annotation.PutMapping;
 public interface UpdateUserApp {
 
     @PutMapping(value = "/updateLoanSpecificId/{id}")
-    void updateUserApp(@PathVariable String id, LoanUserAppSpecificIdDTO loanUserAppSpecificIdDTO);
+    void updateUserApp(@PathVariable String id, String loanUserAppSpecificIdDTO);
 }
