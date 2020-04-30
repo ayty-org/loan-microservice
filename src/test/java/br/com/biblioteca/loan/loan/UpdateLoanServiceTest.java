@@ -1,4 +1,4 @@
-package br.com.biblioteca.loan;
+package br.com.biblioteca.loan.loan;
 
 import br.com.biblioteca.loan.loan.Loan;
 import br.com.biblioteca.loan.loan.LoanRepository;
@@ -14,8 +14,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
 
-import static br.com.biblioteca.loan.builders.LoanBuilder.createLoan;
-import static br.com.biblioteca.loan.builders.LoanUpdate.createLoanUpdate;
+import static br.com.biblioteca.loan.loan.builders.LoanBuilder.createLoan;
+import static br.com.biblioteca.loan.loan.builders.LoanUpdate.createLoanUpdate;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.junit.jupiter.api.Assertions.assertAll;

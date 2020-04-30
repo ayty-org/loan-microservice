@@ -1,4 +1,4 @@
-package br.com.biblioteca.loan.builders;
+package br.com.biblioteca.loan.loan.builders;
 
 import br.com.biblioteca.loan.loan.BookDTO;
 

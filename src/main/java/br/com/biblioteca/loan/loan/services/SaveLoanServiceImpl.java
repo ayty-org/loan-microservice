@@ -31,16 +31,16 @@ public class SaveLoanServiceImpl implements SaveLoanService {
         }
 
         try {
-            for (BookSaveDTO book : loan.getBooks()) {
-                getBook.bookId(book.getSpecificID());
+            for (String book : loan.getBooks()) {
+                getBook.bookId(book);
             }
         } catch (feign.FeignException.NotFound request) {
             throw new FeignBookException(request.getMessage());
         }
 
         String idSpecific = "";
-        for (BookSaveDTO book : loan.getBooks()) {
-            idSpecific += book.getSpecificID();
+        for (String book : loan.getBooks()) {
+            idSpecific += book;
             idSpecific += ",";
         }
 
@@ -51,9 +51,9 @@ public class SaveLoanServiceImpl implements SaveLoanService {
 
         updateUserApp.updateUserApp(loanApp.getUserApp(), loanApp.getLoanSpecificID());
 
-        for (BookSaveDTO book : loan.getBooks()) {
-            updateBook.updateBook(book.getSpecificID(), loanApp.getLoanSpecificID());
-            updateBook.updateStatusBook(book.getSpecificID(),true);
+        for (String book : loan.getBooks()) {
+            updateBook.updateBook(book, loanApp.getLoanSpecificID());
+            updateBook.updateStatusBook(book,true);
         }
     }
 

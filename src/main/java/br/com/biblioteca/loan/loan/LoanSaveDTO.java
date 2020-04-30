@@ -22,7 +22,7 @@ public class LoanSaveDTO {
     private String userApp;
 
     @NotEmpty
-    private List<BookSaveDTO> books;
+    private List<String> books;
 
     @NotEmpty
     private String loanTime;

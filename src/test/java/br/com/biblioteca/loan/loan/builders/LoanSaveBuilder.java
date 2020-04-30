@@ -1,6 +1,5 @@
-package br.com.biblioteca.loan.builders;
+package br.com.biblioteca.loan.loan.builders;
 
-import br.com.biblioteca.loan.loan.BookSaveDTO;
 import br.com.biblioteca.loan.loan.LoanSaveDTO;
 
 import java.util.ArrayList;
@@ -17,10 +16,10 @@ public class LoanSaveBuilder {
                 .loanSpecificID("001");
     }
 
-    public static List<BookSaveDTO> listBook() {
-        BookSaveDTO book01 = new BookSaveDTO("001");
-        BookSaveDTO book02 = new BookSaveDTO("001");
-        List<BookSaveDTO> books = new ArrayList<>();
+    public static List<String> listBook() {
+        String book01 = "001";
+        String book02 = "001";
+        List<String> books = new ArrayList<>();
         books.add(book01);
         books.add(book02);
         return books;

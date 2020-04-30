@@ -1,8 +1,7 @@
-package br.com.biblioteca.loan;
+package br.com.biblioteca.loan.loan;
 
 import br.com.biblioteca.loan.exceptions.FeignBookException;
 import br.com.biblioteca.loan.exceptions.FeignUserAppException;
-import br.com.biblioteca.loan.exceptions.LoanNotFoundException;
 import br.com.biblioteca.loan.feign.GetBook;
 import br.com.biblioteca.loan.feign.GetUserApp;
 import br.com.biblioteca.loan.feign.UpdateBook;
@@ -10,7 +9,6 @@ import br.com.biblioteca.loan.feign.UpdateUserApp;
 import br.com.biblioteca.loan.loan.Loan;
 import br.com.biblioteca.loan.loan.LoanRepository;
 import br.com.biblioteca.loan.loan.services.SaveLoanServiceImpl;
-import feign.FeignException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -20,14 +18,11 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.Optional;
-
-import static br.com.biblioteca.loan.builders.LoanSaveBuilder.createLoanSave;
+import static br.com.biblioteca.loan.loan.builders.LoanSaveBuilder.createLoanSave;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;

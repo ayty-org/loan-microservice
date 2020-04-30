@@ -1,6 +1,8 @@
-package br.com.biblioteca.loan;
+package br.com.biblioteca.loan.loan;
 
 import br.com.biblioteca.loan.loan.LoanReturnDTO;
+import br.com.biblioteca.loan.loan.LoanSaveDTO;
+import br.com.biblioteca.loan.loan.LoanUpdateDTO;
 import br.com.biblioteca.loan.loan.services.DeleteLoanService;
 import br.com.biblioteca.loan.loan.services.GetLoanService;
 import br.com.biblioteca.loan.loan.services.ListLoanService;
@@ -28,12 +30,12 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Collections;
 
-import static br.com.biblioteca.loan.builders.LoanReturnBuilder.createLoanReturn;
-import static br.com.biblioteca.loan.builders.LoanSaveBuilder.createLoanSave;
-import static br.com.biblioteca.loan.builders.LoanUpdate.createLoanUpdate;
+import static br.com.biblioteca.loan.loan.builders.LoanReturnBuilder.createLoanReturn;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
@@ -168,7 +170,7 @@ public class LoanControllerTest {
                 .andDo(print())
                 .andExpect(status().isCreated());
 
-        //verify(saveLoanService).insert(createLoanSave().build());
+        verify(saveLoanService).insert(any(LoanSaveDTO.class));
     }
 
     @Test
@@ -180,7 +182,7 @@ public class LoanControllerTest {
                 .andDo(print())
                 .andExpect(status().isNoContent());
 
-        //verify(updateLoanService).update(createLoanUpdate().build(),1L);
+        verify(updateLoanService).update(any(LoanUpdateDTO.class),eq(1L));
     }
 
     @Test

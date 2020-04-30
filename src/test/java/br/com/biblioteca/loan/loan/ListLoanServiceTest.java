@@ -1,4 +1,4 @@
-package br.com.biblioteca.loan;
+package br.com.biblioteca.loan.loan;
 
 import br.com.biblioteca.loan.feign.GetBook;
 import br.com.biblioteca.loan.feign.GetUserApp;
@@ -17,9 +17,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static br.com.biblioteca.loan.builders.BookBuilder.createBook;
-import static br.com.biblioteca.loan.builders.LoanBuilder.createLoan;
-import static br.com.biblioteca.loan.builders.UserAppBuilder.createUserApp;
+import static br.com.biblioteca.loan.loan.builders.BookBuilder.createBook;
+import static br.com.biblioteca.loan.loan.builders.LoanBuilder.createLoan;
+import static br.com.biblioteca.loan.loan.builders.UserAppBuilder.createUserApp;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.junit.jupiter.api.Assertions.assertAll;
