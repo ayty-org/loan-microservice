@@ -6,7 +6,6 @@ import br.com.biblioteca.loan.feign.GetBook;
 import br.com.biblioteca.loan.feign.GetUserApp;
 import br.com.biblioteca.loan.feign.UpdateBook;
 import br.com.biblioteca.loan.feign.UpdateUserApp;
-import br.com.biblioteca.loan.loan.BookSaveDTO;
 import br.com.biblioteca.loan.loan.Loan;
 import br.com.biblioteca.loan.loan.LoanRepository;
 import br.com.biblioteca.loan.loan.LoanSaveDTO;
