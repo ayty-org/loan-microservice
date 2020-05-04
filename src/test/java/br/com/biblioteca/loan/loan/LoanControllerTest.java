@@ -1,8 +1,5 @@
 package br.com.biblioteca.loan.loan;
 
-import br.com.biblioteca.loan.loan.LoanReturnDTO;
-import br.com.biblioteca.loan.loan.LoanSaveDTO;
-import br.com.biblioteca.loan.loan.LoanUpdateDTO;
 import br.com.biblioteca.loan.loan.services.DeleteLoanService;
 import br.com.biblioteca.loan.loan.services.GetLoanService;
 import br.com.biblioteca.loan.loan.services.ListLoanService;

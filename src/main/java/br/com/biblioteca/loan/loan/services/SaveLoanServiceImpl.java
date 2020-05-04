@@ -9,6 +9,7 @@ import br.com.biblioteca.loan.feign.UpdateUserApp;
 import br.com.biblioteca.loan.loan.Loan;
 import br.com.biblioteca.loan.loan.LoanRepository;
 import br.com.biblioteca.loan.loan.LoanSaveDTO;
+import feign.FeignException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +27,7 @@ public class SaveLoanServiceImpl implements SaveLoanService {
     public void insert(LoanSaveDTO loan) {
         try {
             getUserApp.userId(loan.getUserApp());
-        }catch (feign.FeignException.NotFound request){
+        }catch (FeignException.NotFound request){
             throw new FeignUserAppException(request.getMessage());
         }
 
@@ -34,7 +35,7 @@ public class SaveLoanServiceImpl implements SaveLoanService {
             for (String book : loan.getBooks()) {
                 getBook.bookId(book);
             }
-        } catch (feign.FeignException.NotFound request) {
+        } catch (FeignException.NotFound request) {
             throw new FeignBookException(request.getMessage());
         }
 
